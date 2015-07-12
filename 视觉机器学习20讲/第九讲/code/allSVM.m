@@ -17,7 +17,7 @@ x1 = randn(dataLength, dataNumber(1));
 y1 = ones(1, dataNumber(1));
 
 % 第二类
-x2 = 4 + randn(dataLength, dataNumber(2));
+x2 = 5 + randn(dataLength, dataNumber(2));
 y2 = -ones(1, dataNumber(2));
 
 % 显示
@@ -40,7 +40,7 @@ Y(:, index) = Y;
 % line : w1x1 + w2x2 + b = 0
 % weight = [b, w1, w2]
 weight = svmTrainMine(X, Y);
-
+dualWeight = dualSvmTrainMine(X, Y);
 %% 测试输出
 
 % y = kx + b
@@ -57,5 +57,23 @@ epsilon = 1e-5;
 dist = abs(k .* X(1, :) - X(2,:) - b);
 i_sv = find(dist <= min(dist(:)) + epsilon);        
 plot(X(1,i_sv), X(2,i_sv),'ro');
+hold on
+%% 测试输出
+
+% y = kx + b
+dualk = -dualWeight(2) / dualWeight(3);
+dualb = dualWeight(1) / dualWeight(3);
+
+xLine = -2:0.15:7;
+yLine = dualk .* xLine - dualb;
+plot(xLine, yLine, 'g')
+hold on
+
+%% 查找支持向量
+epsilon = 1e-5;
+dualDist = abs(dualk .* X(1, :) - X(2,:) - dualb);
+dualI_sv = find(dualDist <= min(dualDist(:)) + epsilon);        
+plot(X(1,dualI_sv), X(2,dualI_sv),'g^');
+hold on
 
 

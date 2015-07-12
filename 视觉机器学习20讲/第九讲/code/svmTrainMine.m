@@ -1,6 +1,10 @@
 function w = svmTrainMine(X, Y)
 % SVM Classification:
-%   w = svmTrain(x,y); 
+% w = svmTrainMine(x,y); 
+% min  1/2*x'*H*x + f'*x
+% s.t. A*x <= b
+%      Aeq*x = beq
+%      lb <= x <= ub
 
 dataLength = size(X, 1);
 dataNumber = size(X, 2);

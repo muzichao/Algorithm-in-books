@@ -17,7 +17,7 @@ x1 = randn(dataLength, dataNumber(1));
 y1 = ones(1, dataNumber(1));
 
 % 第二类
-x2 = 4 + randn(dataLength, dataNumber(2));
+x2 = 5 + randn(dataLength, dataNumber(2));
 y2 = -ones(1, dataNumber(2));
 
 % 显示
@@ -39,10 +39,9 @@ Y(:, index) = Y;
 %% SVM 训练
 % line : w1x1 + w2x2 + b = 0
 % weight = [b, w1, w2]
-weight = svmTrainMine(X, Y);
+weight = dualSvmTrainMine(X, Y);
 
 %% 测试输出
-
 % y = kx + b
 k = -weight(2) / weight(3);
 b = weight(1) / weight(3);
