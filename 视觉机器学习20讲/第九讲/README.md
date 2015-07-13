@@ -19,4 +19,4 @@
 
 ![](./pictures/polyKernelSVM.png)
 
-![](./pictures/KernelSVM.png)
+![](./pictures/kernelSVM.png)
